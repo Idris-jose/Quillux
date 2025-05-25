@@ -1,91 +1,18 @@
 import React, { useState } from 'react'
 import { Rocket, PenTool, Share2, Mail, Megaphone, FileText, Zap, MessageSquare, Send, Target } from "lucide-react";
-
+import { Data } from './Datacards/CreateData';
 export default function Create(){
     const Navs = ["All", "Blog", "Social", "Email", "Adcopy"];
     const [selectedNav, setSelectedNav] = useState("All");
     
     // Example data for each nav type
-    const data = {
-        Blog: [
-            {
-                icon: FileText,
-                subtitle: "Template",
-                Title: "Blog Post",
-                Subtext: "Use a guided template to structure your blog.",
-                ButtonText: "Use template",
-            },
-            {
-                icon: PenTool,
-                subtitle: "Quick Start",
-                Title: "AI Blog Writer",
-                Subtext: "Let AI help you draft a new blog post.",
-                ButtonText: "Start writing",
-            }
-        ],
-        Social: [
-            {
-                icon: Share2,
-                subtitle: "Template",
-                Title: "Social Post",
-                Subtext: "Use a guided template to structure your social post.",
-                ButtonText: "Use template",
-            },
-            {
-                icon: MessageSquare,
-                subtitle: "Quick Start",
-                Title: "AI Post Writer",
-                Subtext: "Let AI help you draft engaging social content.",
-                ButtonText: "Start writing",
-            }
-        ],
-        Email: [
-            {
-                icon: Mail,
-                subtitle: "Template",
-                Title: "Newsletter",
-                Subtext: "Engage your audience with a professional newsletter.",
-                ButtonText: "Use template",
-            },
-            {
-                icon: Send,
-                subtitle: "Template",
-                Title: "Promotional Email",
-                Subtext: "Drive sales with a targeted promo email.",
-                ButtonText: "Use template",
-            },
-            {
-                icon: Zap,
-                subtitle: "Quick Start",
-                Title: "AI Email Writer",
-                Subtext: "Let AI help you write effective emails.",
-                ButtonText: "Start writing",
-            }
-        ],
-        Adcopy: [
-            {
-                icon: Megaphone,
-                subtitle: "Template",
-                Title: "Ad Copy Template",
-                Subtext: "Use a guided template to create compelling ad copy.",
-                ButtonText: "Use template",
-            },
-            {
-                icon: Target,
-                subtitle: "Quick Start",
-                Title: "AI Ad Copy Writer",
-                Subtext: "Let AI help you draft high-converting ad copy.",
-                ButtonText: "Start writing",
-            }
-        ]
-    };
-
+   
     // Combine all items from other categories for "All"
-    data.All = [
-        ...data.Blog,
-        ...data.Social,
-        ...data.Email,
-        ...data.Adcopy
+    Data.All = [
+        ...Data.Blog,
+        ...Data.Social,
+        ...Data.Email,
+        ...Data.Adcopy
     ];
 
     return (
@@ -110,7 +37,7 @@ export default function Create(){
                 ))}
             </nav>
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data[selectedNav].map((item, idx) => {
+                {Data[selectedNav].map((item, idx) => {
                     const IconComponent = item.icon;
                     return (
                         <article
@@ -135,7 +62,7 @@ export default function Create(){
                     );
                 })}
             </section>
-            {data[selectedNav].length === 0 && (
+            {Data[selectedNav].length === 0 && (
                 <div className="text-gray-500 text-center mt-10">No items available.</div>
             )}
         </div>

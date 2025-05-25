@@ -1,4 +1,4 @@
- 
+ import Homepage from './Home.jsx'
 import Sidebar from './sidebar.jsx'
 import Create from './Create.jsx'
 import Template from './Templates.jsx'
@@ -13,7 +13,7 @@ function App() {
       <div className="flex-1 ml-0 md:ml-64 p-4 md:p-10">
       
       <Routes>
-        
+        <Route path="/" element={<Homepage />} />
         <Route path="/Create" element={<Create/>} />
         <Route path="/Templates" element={<Template />} />
         <Route path="/Analytics" element={<Analytics />} />
