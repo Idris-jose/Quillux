@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, Home, FileText, Layers, BarChart2, Book } from 'lucide-react';
 
 const navItems = [
-    { title: 'Dashboard', route: '/', icon: <Home size={18} /> },
+   
     { title: 'Create', route: '/create', icon: <FileText size={18} /> },
     { title: 'Templates', route: '/templates', icon: <Layers size={18} /> },
     { title: 'Analytics', route: '/analytics', icon: <BarChart2 size={18} /> },
@@ -34,7 +34,7 @@ const Sidebar = () => {
                     isOpen ? 'block' : 'hidden'
                 } md:block w-64 h-screen bg-gray-100 fixed p-4 transition-all duration-300 z-40`}
             >
-                <h2 className="text-xl font-bold mb-4">Quillux</h2>
+                <h2 className="text-xl font-bold mb-4 text-orange-600">Quillux</h2>
                 <nav>
                     {navItems.map((item) => (
                         <a
