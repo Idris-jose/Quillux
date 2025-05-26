@@ -40,7 +40,7 @@ const ContentGenerator = ({ template, onBack }) => {
         setIsGenerating(true);
 
         try {
-            // Build prompt for Gemini
+            
             const prompt = `
     Template: ${template.Title}
     Topic: ${formData.topic}
@@ -339,8 +339,8 @@ export default function Template() {
     // Show template selection interface
     return (
         <div className="p-6 bg-white min-h-screen">
-            <h1 className="text-3xl font-bold mb-2 text-black">Templates</h1>
-            <p className="text-gray-600 mb-6">Choose from our professionally crafted templates to jumpstart your content creation.</p>
+            <h1 className="text-3xl font-bold mb-2 text-black">Create Pieces that Captivate</h1>
+            <p className="text-gray-600 mb-6">Choose from our professionally crafted Genres to jumpstart your content creation.</p>
             
             <div className="gap-2 flex mb-6 flex-wrap">
                 {Navs.map((Nav) => (
@@ -389,7 +389,7 @@ export default function Template() {
                                 onClick={() => handleTemplateSelect(item)}
                                 className="px-4 py-2 bg-orange-600 hover:bg-orange-700 rounded font-medium text-white transition-colors mt-auto"
                             >
-                                {item.ButtonText}
+                                Create
                             </button>
                         </div>
                     );

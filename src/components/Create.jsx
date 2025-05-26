@@ -18,8 +18,9 @@ export default function Create(){
     return (
         <div className="p-6 bg-white min-h-screen">
             <h1 className="text-3xl font-bold mb-4 text-black">
-                Create Pieces that Captivate
+                Templates
             </h1>
+             <p className="text-gray-600 mb-6">Choose from our professionally crafted templates to jumpstart your content creation.</p>
             <nav className="flex gap-2 mb-6" aria-label="Content type navigation">
                 {Navs.map((Nav) => (
                     <button
