@@ -1,26 +1,65 @@
-import React, { useState } from 'react'
-import { Rocket, PenTool, Share2, Mail, Megaphone, FileText, Zap, MessageSquare, Send, Target } from "lucide-react";
-import { Data } from './Datacards/CreateData';
-export default function Create(){
+import React, { useState } from 'react';
+import { ArrowLeft } from "lucide-react";
+import { Data } from './Datacards/CreateData.js';
+import { TemplatePages } from './TemplatePages.jsx';
+
+export default function Create() {
     const Navs = ["All", "Blog", "Social", "Email", "Adcopy"];
     const [selectedNav, setSelectedNav] = useState("All");
+    const [currentTemplate, setCurrentTemplate] = useState(null);
     
-    // Example data for each nav type
-   
     // Combine all items from other categories for "All"
-    Data.All = [
-        ...Data.Blog,
-        ...Data.Social,
-        ...Data.Email,
-        ...Data.Adcopy
-    ];
+    const allData = {
+        ...Data,
+        All: [
+            ...Data.Blog,
+            ...Data.Social,
+            ...Data.Email,
+            ...Data.Adcopy
+        ]
+    };
 
+    const handleTemplateClick = (templateId) => {
+        setCurrentTemplate(templateId);
+    };
+
+    const handleBackToTemplates = () => {
+        setCurrentTemplate(null);
+    };
+
+    // If a template is selected, show the template page
+    if (currentTemplate && TemplatePages[currentTemplate]) {
+        const template = TemplatePages[currentTemplate];
+        const IconComponent = template.icon;
+        
+        return (
+            <div className="p-6 bg-gray-50 min-h-screen">
+                <div className="mb-6">
+                    <button
+                        onClick={handleBackToTemplates}
+                        className="flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium transition-colors mb-4"
+                    >
+                        <ArrowLeft size={20} />
+                        Back to Templates
+                    </button>
+                    <div className="flex items-center gap-3">
+                        <IconComponent className="text-orange-600" size={28} />
+                        <h1 className="text-3xl font-bold text-black">{template.title}</h1>
+                    </div>
+                </div>
+                {template.content}
+            </div>
+        );
+    }
+
+    // Default templates view
     return (
         <div className="p-6 bg-white min-h-screen">
             <h1 className="text-3xl font-bold mb-4 text-black">
                 Templates
             </h1>
-             <p className="text-gray-600 mb-6">Choose from our professionally crafted templates to jumpstart your content creation.</p>
+            <p className="text-gray-600 mb-6">Choose from our professionally crafted templates to jumpstart your content creation.</p>
+            
             <nav className="flex gap-2 mb-6" aria-label="Content type navigation">
                 {Navs.map((Nav) => (
                     <button
@@ -37,8 +76,9 @@ export default function Create(){
                     </button>
                 ))}
             </nav>
+            
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {Data[selectedNav].map((item, idx) => {
+                {allData[selectedNav].map((item, idx) => {
                     const IconComponent = item.icon;
                     return (
                         <article
@@ -56,6 +96,7 @@ export default function Create(){
                             <button
                                 className="px-4 py-2 bg-orange-600 hover:bg-orange-700 rounded font-medium text-white transition-colors mt-auto focus:outline-none focus:ring-2 focus:ring-orange-400"
                                 tabIndex={0}
+                                onClick={() => handleTemplateClick(item.id)}
                             >
                                 {item.ButtonText}
                             </button>
@@ -63,7 +104,8 @@ export default function Create(){
                     );
                 })}
             </section>
-            {Data[selectedNav].length === 0 && (
+            
+            {allData[selectedNav].length === 0 && (
                 <div className="text-gray-500 text-center mt-10">No items available.</div>
             )}
         </div>

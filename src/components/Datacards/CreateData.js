@@ -1,15 +1,17 @@
 import { Rocket, PenTool, Share2, Mail, Megaphone, FileText, Zap, MessageSquare, Send, Target } from "lucide-react";
+
 export const Data = {
     Blog: [
         {
+            id: "blog-post", // Added id field
             icon: FileText,
             subtitle: "Template",
             Title: "Blog Post",
             Subtext: "Use a guided template to structure your blog.",
             ButtonText: "Use template",
         },
-        // Added new template
         {
+            id: "blog-outline", // Added id field
             icon: PenTool,
             subtitle: "Template",
             Title: "Blog Outline",
@@ -19,14 +21,15 @@ export const Data = {
     ],
     Social: [
         {
+            id: "social-post", // Added id field
             icon: Share2,
             subtitle: "Template",
             Title: "Social Post",
             Subtext: "Use a guided template to structure your social post.",
             ButtonText: "Use template",
         },
-        // Added new template
         {
+            id: "social-campaign", // Added id field
             icon: Rocket,
             subtitle: "Template",
             Title: "Social Campaign",
@@ -36,6 +39,7 @@ export const Data = {
     ],
     Email: [
         {
+            id: "newsletter", // Added id field
             icon: Mail,
             subtitle: "Template",
             Title: "Newsletter",
@@ -43,14 +47,15 @@ export const Data = {
             ButtonText: "Use template",
         },
         {
+            id: "promotional-email", // Added id field
             icon: Send,
             subtitle: "Template",
             Title: "Promotional Email",
             Subtext: "Drive sales with a targeted promo email.",
             ButtonText: "Use template",
         },
-        // Added new template
         {
+            id: "followup-email", // Added id field
             icon: FileText,
             subtitle: "Template",
             Title: "Follow-up Email",
@@ -60,14 +65,15 @@ export const Data = {
     ],
     Adcopy: [
         {
+            id: "ad-copy", // Added id field
             icon: Megaphone,
             subtitle: "Template",
             Title: "Ad Copy Template",
             Subtext: "Use a guided template to create compelling ad copy.",
             ButtonText: "Use template",
         },
-        // Added new template
         {
+            id: "ad-headline", // Added id field
             icon: PenTool,
             subtitle: "Template",
             Title: "Ad Headline",
