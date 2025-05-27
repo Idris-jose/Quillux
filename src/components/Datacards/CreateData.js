@@ -3,7 +3,7 @@ import { Rocket, PenTool, Share2, Mail, Megaphone, FileText, Zap, MessageSquare,
 export const Data = {
     Blog: [
         {
-            id: "blog-post", // Added id field
+            id: "blog-post",
             icon: FileText,
             subtitle: "Template",
             Title: "Blog Post",
@@ -11,7 +11,7 @@ export const Data = {
             ButtonText: "Use template",
         },
         {
-            id: "blog-outline", // Added id field
+            id: "blog-outline",
             icon: PenTool,
             subtitle: "Template",
             Title: "Blog Outline",
@@ -21,7 +21,7 @@ export const Data = {
     ],
     Social: [
         {
-            id: "social-post", // Added id field
+            id: "social-post",
             icon: Share2,
             subtitle: "Template",
             Title: "Social Post",
@@ -29,7 +29,7 @@ export const Data = {
             ButtonText: "Use template",
         },
         {
-            id: "social-campaign", // Added id field
+            id: "social-campaign",
             icon: Rocket,
             subtitle: "Template",
             Title: "Social Campaign",
@@ -39,7 +39,7 @@ export const Data = {
     ],
     Email: [
         {
-            id: "newsletter", // Added id field
+            id: "newsletter",
             icon: Mail,
             subtitle: "Template",
             Title: "Newsletter",
@@ -47,7 +47,7 @@ export const Data = {
             ButtonText: "Use template",
         },
         {
-            id: "promotional-email", // Added id field
+            id: "promotional-email",
             icon: Send,
             subtitle: "Template",
             Title: "Promotional Email",
@@ -55,7 +55,7 @@ export const Data = {
             ButtonText: "Use template",
         },
         {
-            id: "followup-email", // Added id field
+            id: "followup-email",
             icon: FileText,
             subtitle: "Template",
             Title: "Follow-up Email",
@@ -65,7 +65,7 @@ export const Data = {
     ],
     Adcopy: [
         {
-            id: "ad-copy", // Added id field
+            id: "ad-copy",
             icon: Megaphone,
             subtitle: "Template",
             Title: "Ad Copy Template",
@@ -73,12 +73,22 @@ export const Data = {
             ButtonText: "Use template",
         },
         {
-            id: "ad-headline", // Added id field
+            id: "ad-headline",
             icon: PenTool,
             subtitle: "Template",
             Title: "Ad Headline",
             Subtext: "Craft attention-grabbing ad headlines.",
             ButtonText: "Use template",
         },
-    ]
+    ],
+    CV: [
+        {
+            id: "cv-generator",
+            icon: Target,
+            subtitle: "Template",
+            Title: "CV Generator",
+            Subtext: "Create a professional CV with guided prompts.",
+            ButtonText: "Generate CV",
+        },
+    ],
 };

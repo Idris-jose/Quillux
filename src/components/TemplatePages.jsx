@@ -9,7 +9,7 @@ import PromotionalEmailTemplate from './Templates/PromotionalEmailTemplate.jsx';
 import FollowupEmailTemplate from './Templates/FollowupEmailTemplate.jsx';
 import AdCopyTemplate from './Templates/AdCopyTemplate';
 import AdHeadlineTemplate from './Templates/AdHeadlineTemplate';
-
+import CVGeneratorTemplate from './Templates/CVGeneratorTemplate.jsx';
 
 
 
@@ -24,52 +24,47 @@ export const TemplatePages = {
         title: "Social Post Template",
         icon: Share2,
         content: <SocialPostTemplate/>
-    
-    }
-        ,
-
+    },
     "newsletter": {
         title: "Newsletter Template",
         icon: Mail,
-        content: < NewsletterTemplate/>
+        content: <NewsletterTemplate/>
     },
-
     "ad-copy": {
         title: "Ad Copy Template",
         icon: Megaphone,
-        content: < AdCopyTemplate />
+        content: <AdCopyTemplate />
     },
-
-    // Add other templates following the same pattern...
     "blog-outline": {
         title: "Blog Outline Template",
         icon: PenTool,
         content: <BlogOutlineTemplate />
     },
-
     "social-campaign": {
         title: "Social Campaign Template", 
         icon: Rocket,
         content: <SocialCampaignTemplate />
     },
-
     "promotional-email": {
         title: "Promotional Email Template",
         icon: Send,
         content: <PromotionalEmailTemplate />
     },
-
     "followup-email": {
         title: "Follow-up Email Template",
         icon: FileText,
         content: <FollowupEmailTemplate/>
     },
-
-  "ad-headline": {
-    title: "Ad Headline Template",
-    icon: PenTool,
-    content: < AdHeadlineTemplate/>
-  }
+    "ad-headline": {
+        title: "Ad Headline Template",
+        icon: PenTool,
+        content: <AdHeadlineTemplate/>
+    },
+    "cv-generator": {
+        title: "CV Generator",
+        icon: FileText,
+        content: <CVGeneratorTemplate />
+    }
 };
 
 export default TemplatePages;

@@ -15,7 +15,8 @@ export default function Create() {
             ...Data.Blog,
             ...Data.Social,
             ...Data.Email,
-            ...Data.Adcopy
+            ...Data.Adcopy,
+            ...Data.CV
         ]
     };
 
