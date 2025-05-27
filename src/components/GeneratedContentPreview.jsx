@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
 
-// Helper component for copy functionality
+
 const CopyButton = ({ text, className = "" }) => {
     const [copied, setCopied] = useState(false);
     
@@ -44,7 +44,7 @@ export default function GeneratedContentPreview({ content, onClose, templateType
                 </div>
                 <div className="p-6">
                     <div className="bg-gray-50 p-4 rounded-lg">
-                        <pre className="whitespace-pre-wrap text-sm text-gray-800 font-mono">
+                        <pre className="whitespace-pre-wrap  text-black font-light ">
                             {content}
                         </pre>
                     </div>
