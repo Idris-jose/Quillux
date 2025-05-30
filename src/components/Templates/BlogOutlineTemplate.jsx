@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import TemplateForm from '../TemplateForm.jsx';
 import GeneratedContentPreview from '../GeneratedContentPreview.jsx';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function BlogOutlineTemplate() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedContent, setGeneratedContent] = useState('');
     const [showPreview, setShowPreview] = useState(false);
+
+      // State variables for error and success messages
+      const [error, setError] = useState(null);
+      const [success, setSuccess] = useState(null);
+    
 
     const GEMINI_API_KEY = import.meta.env?.VITE_GEMINI_API_KEY;
 
@@ -93,6 +99,8 @@ Structure the outline in a clear, hierarchical format that's easy to follow when
             setShowPreview(true);
         } finally {
             setIsGenerating(false);
+            setSuccess('Appointment booked successfully!');
+    toast.success('Appointment booked successfully!');
         }
     };
 
@@ -147,20 +155,52 @@ Structure the outline in a clear, hierarchical format that's easy to follow when
     ];
 
     return (
-        <>
-            <TemplateForm
+        <> 
+        <div className="flex flex-col lg:flex-row min-h-[calc(100vh-140px)]">
+                 {/* Status messages */}
+                       {error && (
+                         <div
+                           className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-4"
+                           role="alert"
+                         >
+                           <div className="flex items-center">
+                             <AlertCircle className="mr-2" size={20} />
+                             <p>{error}</p>
+                           </div>
+                         </div>
+                       )}
+                 
+                       {/* Success message */}
+                       {success && (
+                         <div
+                           className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 my-4"
+                           role="alert"
+                         >
+                           <div className="flex items-center">
+                             <CheckCircle className="mr-2" size={20} />
+                             <p>{success}</p>
+                           </div>
+                         </div>
+                       )}
+                 
+
+             <TemplateForm
                 template={{ title: "Blog Outline Generator" }}
                 fields={fields}
                 onGenerate={generateContent}
                 isGenerating={isGenerating}
             />
-            {showPreview && (
+             
                 <GeneratedContentPreview
                     content={generatedContent}
                     onClose={() => setShowPreview(false)}
                     templateType="blog-outline"
                 />
-            )}
+          
+        
+        </div>
+           
+           
         </>
     );
 }

@@ -38,14 +38,14 @@ export default function Create() {
                 <div className="mb-6">
                     <button
                         onClick={handleBackToTemplates}
-                        className="flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium transition-colors mb-4"
+                        className="flex items-center gap-2 text-black hover:text-orange-700 font-medium transition-colors mb-4"
                     >
                         <ArrowLeft size={20} />
                         Back to Templates
                     </button>
                     <div className="flex items-center gap-3">
                         <IconComponent className="text-orange-600" size={28} />
-                        <h1 className="text-3xl font-bold text-black">{template.title}</h1>
+                        <h1 className="text-3xl font-semibold text-orange-600">{template.title}</h1>
                     </div>
                 </div>
                 {template.content}

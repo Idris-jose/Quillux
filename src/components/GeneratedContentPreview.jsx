@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check } from 'lucide-react';
+import { Copy, Check,FileText } from 'lucide-react';
 
 
 const CopyButton = ({ text, className = "" }) => {
@@ -28,28 +28,52 @@ const CopyButton = ({ text, className = "" }) => {
 
 export default function GeneratedContentPreview({ content, onClose, templateType }) {
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-                <div className="p-6 border-b flex justify-between items-center">
-                    <h3 className="text-xl font-bold">Generated Content</h3>
-                    <div className="flex gap-2">
-                        <CopyButton text={content} />
-                        <button
-                            onClick={onClose}
-                            className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded transition-colors"
-                        >
-                            Close
-                        </button>
-                    </div>
+        <div className=" p-6 bg-gray-50">
+            <div className="flex items-center justify-between mb-6">
+               
+                    <div className="flex items-center gap-2">
+                            <FileText className="text-gray-600" size={20} />
+                            <h2 className="text-lg font-semibold text-gray-900">Preview</h2>
+                        </div>
+                 
+                        {content && (
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={CopyButton}
+                                    className="flex items-center gap-1 px-3 py-1 text-sm text-gray-600 hover:text-gray-800 transition-colors"
+                                >
+                                    <Copy size={16} />
+                                    Copy
+                                </button>
+                              
+                            </div>
+                        )}
                 </div>
-                <div className="p-6">
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                        <pre className="whitespace-pre-wrap  text-black font-light ">
-                            {content}
-                        </pre>
+              
+                    <div className="bg-white rounded-lg border border-gray-200 h-[calc(100vh-280px)] overflow-hidden">
+                        {content ? (
+                            <div className="h-full overflow-y-auto">
+                                <div className="p-6">
+                                    <pre className="whitespace-pre-wrap text-sm text-gray-800 font-sans leading-relaxed">
+                                        {content}
+                                    </pre>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="h-full flex items-center justify-center text-center p-6">
+                                <div>
+                                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <FileText className="text-gray-400" size={24} />
+                                    </div>
+                                    <h3 className="text-lg font-medium text-gray-900 mb-2">No content generated yet</h3>
+                                    <p className="text-gray-600 text-sm">
+                                        Fill out the form and click "Generate Content" to see your AI-powered content here.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                </div>
-            </div>
+                   
         </div>
     );
 }
