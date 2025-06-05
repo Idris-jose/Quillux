@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, Home, FileText, Layers, BarChart2, Book } from 'lucide-react';
 
 const navItems = [
-    
+     { title: 'Home', route: '/', icon: <Home size={18} /> },
     { title: 'Templates', route: '/create', icon: <Layers size={18} /> },
     { title: 'Create', route: '/templates', icon: <FileText size={18} />  },
     { title: 'Analytics', route: '/analytics', icon: <BarChart2 size={18} /> },

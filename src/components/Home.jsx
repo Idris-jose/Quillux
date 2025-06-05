@@ -26,108 +26,36 @@ export default function Homepage() {
     }
   ];
 
-  const renderHome = () => (
-    <div className="space-y-8">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Content Creator</h1>
-        <p className="text-gray-600 text-lg">Create, analyze, and optimize your content</p>
-      </div>
+ 
+    return (
+      <div className="p-6 bg-white min-h-screen">
+        <h1 className="text-3xl font-bold mb-4 text-orange-600">Quillux</h1>
+        <p className="text-gray-600 mb-6">Your AI-powered Content Writing Assistant.</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        {features.map((feature, idx) => {
-          const IconComponent = feature.icon;
-          return (
-            <div 
-              key={idx} 
-              className="bg-white rounded-lg p-6 border hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => setCurrentSection(feature.route)}
-            >
-              <IconComponent className="text-orange-600 mb-4" size={32} />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
-              <p className="text-gray-600 mb-4">{feature.description}</p>
-              <div className="flex items-center text-orange-600 font-medium">
-                Open <ArrowRight className="ml-2" size={16} />
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-
-  const renderAnalytics = () => (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">Analytics</h1>
-      <div className="bg-white rounded-lg p-8 border">
-        <div className="text-center text-gray-500">
-          <BarChart3 size={48} className="mx-auto mb-4" />
-          <p>Analytics dashboard coming soon</p>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderCreate = () => (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">Create Content</h1>
-      <div className="bg-white rounded-lg p-8 border">
-        <div className="text-center text-gray-500">
-          <PenTool size={48} className="mx-auto mb-4" />
-          <p>Content creation tools coming soon</p>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderTemplates = () => (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">Templates</h1>
-      <div className="bg-white rounded-lg p-8 border">
-        <div className="text-center text-gray-500">
-          <FileText size={48} className="mx-auto mb-4" />
-          <p>Template library goes here</p>
-          <p className="text-sm mt-2">This would connect to your existing Template component</p>
-        </div>
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Simple Navigation */}
-      <nav className="bg-white border-b px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <h2 className="text-xl font-bold text-gray-900">ContentCraft</h2>
-          <div className="flex gap-4">
-            {[
-              { id: 'home', label: 'Home' },
-              { id: 'analytics', label: 'Analytics' },
-              { id: 'create', label: 'Create' },
-              { id: 'templates', label: 'Templates' }
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setCurrentSection(item.id)}
-                className={`px-4 py-2 rounded ${
-                  currentSection === item.id 
-                    ? 'bg-orange-600 text-white' 
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
+        <section className="mt-10">
+          <h2 className="text-2xl font-semibold mb-6 text-orange-600">Features</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              return (
+                <button
+                  key={feature.route}
+                  className="group flex flex-col items-start p-5 border-2 border-orange-200 rounded-lg bg-orange-50 hover:bg-orange-100 transition"
+                  onClick={() => setCurrentSection(feature.route)}
+                  type="button"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <Icon className="text-orange-600 w-6 h-6" />
+                    <span className="font-semibold text-lg">{feature.title}</span>
+                  </div>
+                  <p className="text-gray-600 mb-4">{feature.description}</p>
+                  <ArrowRight className="text-orange-400 opacity-0 group-hover:opacity-100 transition" />
+                </button>
+              );
+            })}
           </div>
-        </div>
-      </nav>
-
-      {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6 py-8">
-        {currentSection === 'home' && renderHome()}
-        {currentSection === 'analytics' && renderAnalytics()}
-        {currentSection === 'create' && renderCreate()}
-        {currentSection === 'templates' && renderTemplates()}
-      </main>
-    </div>
-  );
+        </section>
+      </div>
+    );
+  
 }
