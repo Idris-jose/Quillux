@@ -61,7 +61,7 @@ export default function Create() {
             </h1>
             <p className="text-gray-600 mb-6">Choose from our professionally crafted templates to jumpstart your content creation.</p>
             
-            <nav className="flex gap-2 mb-6" aria-label="Content type navigation">
+            <nav className="gap-2 flex mb-6 flex-wrap" aria-label="Content type navigation">
                 {Navs.map((Nav) => (
                     <button
                         key={Nav}
@@ -78,7 +78,7 @@ export default function Create() {
                 ))}
             </nav>
             
-            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {allData[selectedNav].map((item, idx) => {
                     const IconComponent = item.icon;
                     return (
