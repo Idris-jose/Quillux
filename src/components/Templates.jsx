@@ -2,9 +2,12 @@
 import { useState } from 'react';
 import { Data } from './Datacards/TemplateData';
 import { ArrowLeft, Sparkles, FileText, Send, Download, Copy, RefreshCw } from 'lucide-react';
+import toast, { Toaster } from 'react-hot-toast';
 
 // Content Generation Interface Component
 const ContentGenerator = ({ template, onBack }) => {
+       const [error, setError] = useState(null);
+          const [success, setSuccess] = useState(null);
     const [formData, setFormData] = useState({
         topic: '',
         audience: '',
@@ -68,12 +71,15 @@ const ContentGenerator = ({ template, onBack }) => {
         } catch (error) {
             console.error('Generation failed:', error);
             setGeneratedContent("An error occurred while generating content.");
+            setError('Failed to generate content. Please try again.');
+            toast.error('Failed to generate content. Please try again.')
         } finally {
             setIsGenerating(false);
+             setSuccess('Content generated successfully!');
+    toast.success('Content generated successfully!');
         }
     };
 
-    // Mock content generator - replace with actual Gemini API integration
    
 
     const copyToClipboard = () => {
@@ -95,6 +101,7 @@ const ContentGenerator = ({ template, onBack }) => {
 
     return (
         <div className="min-h-screen bg-gray-50">
+            <Toaster position="top-right" />
             {/* Header */}
             <div className="bg-white border-b border-gray-200 p-6">
                 <div className="flex items-center gap-4 mb-4">

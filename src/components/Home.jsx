@@ -18,13 +18,13 @@ export default function Homepage() {
       icon: PenTool,
       title: "Create",
       description: "Build new content",
-      route: "/create"
+      route: "/templates"
     },
     {
       icon: FileText,
       title: "Templates",
       description: "Browse template library",
-      route: "/templates"
+      route: "/create"
     }
   ];
 

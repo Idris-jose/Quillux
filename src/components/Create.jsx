@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { ArrowLeft } from "lucide-react";
 import { Data } from './Datacards/CreateData.js';
 import { TemplatePages } from './TemplatePages.jsx';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Create() {
     const Navs = ["All", "Blog", "Social", "Email", "Adcopy"];
     const [selectedNav, setSelectedNav] = useState("All");
     const [currentTemplate, setCurrentTemplate] = useState(null);
+      const [error, setError] = useState(null);
+      const [success, setSuccess] = useState(null);
     
     // Combine all items from other categories for "All"
     const allData = {
