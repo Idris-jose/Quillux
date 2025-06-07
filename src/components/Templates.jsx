@@ -84,7 +84,7 @@ const ContentGenerator = ({ template, onBack }) => {
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(generatedContent);
-        // You could add a toast notification here
+       
     };
 
     const downloadAsFile = () => {
