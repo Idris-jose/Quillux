@@ -5,7 +5,7 @@ import {
   ArrowRight,
   Play
 } from 'lucide-react';
-import Navigation from './Navigation.jsx'
+
   import { useNavigate } from 'react-router-dom';
 
 export default function QuillLuxHero() {
@@ -19,7 +19,7 @@ export default function QuillLuxHero() {
 
 // Inside component:
 const navigate = useNavigate();
-const handleGetStarted = () => navigate('/Home');
+const handleGetStarted = () => navigate('/Signup');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-orange-600 to-slate-900 relative overflow-hidden">
