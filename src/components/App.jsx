@@ -7,7 +7,7 @@ import Libary from './Library.jsx'
 import Homepage2 from './Homepage.jsx'
 import Login from './Auth/Login.jsx'
 import SignUp from './Auth/Signup.jsx'
-import { Routes, Route, BrowserRouter, useLocation } from 'react-router-dom'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
 function LayoutWithSidebar({ children }) {
   return (
@@ -20,34 +20,22 @@ function LayoutWithSidebar({ children }) {
   )
 }
 
-function AppRoutes() {
-  return (
-    <Routes>
-      <Route path="/" element={<Homepage2 />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route
-        element={
-          <LayoutWithSidebar>
-            {/* Nested routes will render inside the sidebar layout */}
-            <Routes>
-              <Route path="/home" element={<Home />} />
-              <Route path="/create" element={<Create />} />
-              <Route path="/templates" element={<Template />} />
-              <Route path="/analytics" element={<Analytics />} />
-              <Route path="/library" element={<Libary />} />
-            </Routes>
-          </LayoutWithSidebar>
-        }
-      />
-    </Routes>
-  )
-}
-
 function App() {
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <Routes>
+        {/* Public routes (no sidebar) */}
+        <Route path="/" element={<Homepage2 />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        
+        {/* Protected routes (with sidebar) */}
+        <Route path="/home" element={<LayoutWithSidebar><Home /></LayoutWithSidebar>} />
+        <Route path="/create" element={<LayoutWithSidebar><Create /></LayoutWithSidebar>} />
+        <Route path="/templates" element={<LayoutWithSidebar><Template /></LayoutWithSidebar>} />
+        <Route path="/analytics" element={<LayoutWithSidebar><Analytics /></LayoutWithSidebar>} />
+        <Route path="/library" element={<LayoutWithSidebar><Libary /></LayoutWithSidebar>} />
+      </Routes>
     </BrowserRouter>
   )
 }
