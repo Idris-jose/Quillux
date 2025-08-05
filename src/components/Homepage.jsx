@@ -38,11 +38,11 @@ const handleGetStarted = () => navigate('/Signup');
             
             {/* Main Heading */}
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+              <span className="text-white">
                 Content Creation
               </span>
               <br />
-              <span className="bg-gradient-to-r from-orange-400 to-white bg-clip-text text-transparent animate-gradient">
+              <span className="text-white">
                 Reimagined
               </span>
             </h1>
@@ -58,14 +58,11 @@ const handleGetStarted = () => navigate('/Signup');
               <button 
               
               onClick={handleGetStarted}
-              className="group bg-gradient-to-r from-orange-800 to-orange-500 px-8 py-4 rounded-full text-white font-semibold text-lg hover:scale-105 transition-all duration-300 flex items-center shadow-2xl hover:shadow-purple-500/25">
+              className="group bg-gradient-to-r from-orange-800 to-orange-500 px-8 py-4 rounded-full text-white font-semibold text-lg hover:scale-105 transition-all duration-300 flex items-center shadow-2xl ">
                 Start Writing Now
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="group px-8 py-4 rounded-full border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-all duration-300 flex items-center">
-                <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                Watch Demo
-              </button>
+             
             </div>
 
             
