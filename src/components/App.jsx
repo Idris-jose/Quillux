@@ -6,8 +6,11 @@ import Libary from './Library.jsx'
 import Homepage2 from './Homepage.jsx'
 import Login from './Auth/Login.jsx'
 import SignUp from './Auth/Signup.jsx'
+import {AuthProvider } from './Auth/AuthContext.jsx'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
+import ProtectedRoute from './Routes/ProtectedRoute.jsx';
+import PublicRoute from './Routes/PublicRoute.jsx';
 function LayoutWithSidebar({ children }) {
   return (
     <div className="flex min-h-screen">
@@ -19,24 +22,41 @@ function LayoutWithSidebar({ children }) {
   )
 }
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Public routes (no sidebar) */}
-        <Route path="/" element={<Homepage2 />} />
-        <Route path="/login" element={<Login />} />
+      <AuthProvider>
+        <Routes>
+          {/* Public routes (no sidebar) */}
+          <Route path="/" element={<Homepage2 />} />
+          <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         
-        {/* Protected routes (with sidebar) */}
-        <Route path="/home" element={<LayoutWithSidebar><Home /></LayoutWithSidebar>} />
-        <Route path="/create" element={<LayoutWithSidebar><Create /></LayoutWithSidebar>} />
-        <Route path="/templates" element={<LayoutWithSidebar><Template /></LayoutWithSidebar>} />
-       
-        <Route path="/library" element={<LayoutWithSidebar><Libary /></LayoutWithSidebar>} />
+      
+         {/* Protected routes (with sidebar) */}
+        <Route path="/home" element={
+          <ProtectedRoute>
+            <LayoutWithSidebar><Home /></LayoutWithSidebar>
+          </ProtectedRoute>
+        } />
+        <Route path="/create" element={
+          <ProtectedRoute>
+            <LayoutWithSidebar><Create /></LayoutWithSidebar>
+          </ProtectedRoute>
+        } />
+        <Route path="/templates" element={
+          <ProtectedRoute>
+            <LayoutWithSidebar><Template /></LayoutWithSidebar>
+          </ProtectedRoute>
+        } />
+        <Route path="/library" element={
+          <ProtectedRoute>
+            <LayoutWithSidebar><Libary /></LayoutWithSidebar>
+          </ProtectedRoute>
+        } />
+        
       </Routes>
-    </BrowserRouter>
-  )
+    </AuthProvider>
+  </BrowserRouter>
+)
 }
-
-export default App

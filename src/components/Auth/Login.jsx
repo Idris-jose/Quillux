@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { supabase } from './client.js';
+import { useAuth } from './AuthContext';
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { signIn, loading, error } = useAuth();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,17 +13,12 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(null);
-        setLoading(true);
         const { email, password } = formData;
         try {
-            const { error } = await supabase.auth.signInWithPassword({ email, password });
-            if (error) throw error;
+            await signIn(email, password);
             navigate('/home');
         } catch (err) {
-            setError('Invalid email or password.');
-        } finally {
-            setLoading(false);
+            // Error is already handled in AuthContext
         }
     };
 
@@ -74,7 +68,6 @@ const Login = () => {
                 </div>
             </form>
         </div>
-        
     );
 };
 

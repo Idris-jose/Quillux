@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { supabase } from './client.js';
+import { useAuth } from './AuthContext';
 
 const SignUp = () => {
     const [form, setForm] = useState({ username: '', email: '', password: '' });
     const [agree, setAgree] = useState(false);
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { signUp, loading, error } = useAuth();
 
     const handleChange = e => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -15,28 +14,17 @@ const SignUp = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        setError('');
         if (!form.username || !form.email || !form.password) {
-            setError('All fields are required.');
-            return;
+            return; // Validation will be handled by AuthContext error state
         }
         if (!agree) {
-            setError('You must agree to the Terms.');
-            return;
+            return; // Validation will be handled by AuthContext error state
         }
-        setLoading(true);
         try {
-            const { error } = await supabase.auth.signUp({
-                email: form.email,
-                password: form.password,
-                options: { data: { username: form.username } }
-            });
-            if (error) throw error;
+            await signUp(form.email, form.password);
             navigate('/login');
         } catch (err) {
-            setError(err.message || 'Sign up failed.');
-        } finally {
-            setLoading(false);
+            // Error is already handled in AuthContext
         }
     };
 
