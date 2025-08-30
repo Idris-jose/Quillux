@@ -4,7 +4,7 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBQNpmpFmvtZpbG-AjUf-gOBnRHDX9F_98",
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
   authDomain: "simple-project-e7d5c.firebaseapp.com",
   projectId: "simple-project-e7d5c",
   storageBucket: "simple-project-e7d5c.firebasestorage.app",
