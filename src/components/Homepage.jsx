@@ -22,7 +22,7 @@ const navigate = useNavigate();
 const handleGetStarted = () => navigate('/Signup');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-orange-600 to-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-hidden">
 
 
       {/* Hero Section */}
@@ -38,17 +38,17 @@ const handleGetStarted = () => navigate('/Signup');
             
             {/* Main Heading */}
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-              <span className="text-white">
+              <span className="text-orange-600">
                 Content Creation
               </span>
               <br />
-              <span className="text-white">
+              <span className="text-orange-600">
                 Reimagined
               </span>
             </h1>
             
             {/* Subtitle */}
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-black mb-8 max-w-4xl mx-auto leading-relaxed">
               Transform your ideas into compelling content with QuillLux's AI-powered writing assistant. 
               Create blogs, articles, social media posts, and more in minutes.
             </p>
@@ -58,7 +58,7 @@ const handleGetStarted = () => navigate('/Signup');
               <button 
               
               onClick={handleGetStarted}
-              className="group bg-gradient-to-r from-orange-800 to-orange-500 px-8 py-4 rounded-full text-white font-semibold text-lg hover:scale-105 transition-all duration-300 flex items-center shadow-2xl ">
+              className="group bg-gradient-to-r from-orange-800 to-orange-500 px-8 py-4 rounded-2xl text-white font-semibold text-lg hover:scale-105 transition-all duration-300 flex items-center shadow-2xl ">
                 Start Writing Now
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>

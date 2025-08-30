@@ -2,7 +2,6 @@ import Home from './Home.jsx'
 import Sidebar from './sidebar.jsx'
 import Create from './Create.jsx'
 import Template from './Templates.jsx'
-import Analytics from './Analytics.jsx'
 import Libary from './Library.jsx'
 import Homepage2 from './Homepage.jsx'
 import Login from './Auth/Login.jsx'
@@ -33,7 +32,7 @@ function App() {
         <Route path="/home" element={<LayoutWithSidebar><Home /></LayoutWithSidebar>} />
         <Route path="/create" element={<LayoutWithSidebar><Create /></LayoutWithSidebar>} />
         <Route path="/templates" element={<LayoutWithSidebar><Template /></LayoutWithSidebar>} />
-        <Route path="/analytics" element={<LayoutWithSidebar><Analytics /></LayoutWithSidebar>} />
+       
         <Route path="/library" element={<LayoutWithSidebar><Libary /></LayoutWithSidebar>} />
       </Routes>
     </BrowserRouter>
