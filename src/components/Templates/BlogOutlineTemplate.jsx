@@ -8,9 +8,7 @@ export default function BlogOutlineTemplate() {
     const [generatedContent, setGeneratedContent] = useState('');
     const [showPreview, setShowPreview] = useState(false);
 
-      // State variables for error and success messages
-      const [error, setError] = useState(null);
-      const [success, setSuccess] = useState(null);
+
     
 
     const GEMINI_API_KEY = import.meta.env?.VITE_GEMINI_API_KEY;

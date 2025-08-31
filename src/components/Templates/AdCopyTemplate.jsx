@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TemplateForm from '../TemplateForm.jsx';
 import GeneratedContentPreview from '../GeneratedContentPreview.jsx';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function AdCopyTemplate() {
 
@@ -10,11 +11,11 @@ export default function AdCopyTemplate() {
 
             const GEMINI_API_KEY = import.meta.env?.VITE_GEMINI_API_KEY;
 
-            const generateContent = async (formData) => {
-                setIsGenerating(true);
+    const generateContent = async (formData) => {
+        setIsGenerating(true);
 
-                try {
-                    const prompt = `
+        try {
+            const prompt = `
 Create compelling ad copy with the following specifications:
 
 Product/Service: ${formData.product || 'Not specified'}
@@ -33,30 +34,32 @@ Please create:
 4. Multiple variations for A/B testing
 
 Make it persuasive, benefit-focused, and optimized for ${formData.platform || 'the platform'}.
-                    `.trim();
+            `.trim();
 
-                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: prompt }] }]
-                        })
-                    });
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }]
+                })
+            });
 
-                    const data = await response.json();
-                    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to generate content.";
-                    setGeneratedContent(text);
-                    setShowPreview(true);
-                } catch (error) {
-                    console.error('Generation failed:', error);
-                    setGeneratedContent("An error occurred while generating content. Please check your API key and try again.");
-                    setShowPreview(true);
-                } finally {
-                    setIsGenerating(false);
-                }
-            };
+            const data = await response.json();
+            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to generate content.";
+            setGeneratedContent(text);
+            setShowPreview(true);
+            toast.success('Content generated successfully!');
+        } catch (error) {
+            console.error('Generation failed:', error);
+            setGeneratedContent("An error occurred while generating content. Please check your API key and try again.");
+            setShowPreview(true);
+            toast.error("An error occurred while generating content. Please check your API key and try again.");
+        } finally {
+            setIsGenerating(false);
+        }
+    };
 
             const fields = [
                 {
@@ -113,19 +116,22 @@ Make it persuasive, benefit-focused, and optimized for ${formData.platform || 't
 
             return (
                 <>
-                    <TemplateForm 
-                        template={{ title: "Ad Copy Generator" }}
-                        fields={fields}
-                        onGenerate={generateContent}
-                        isGenerating={isGenerating}
-                    />
-                    {showPreview && (
-                        <GeneratedContentPreview
-                            content={generatedContent}
-                            onClose={() => setShowPreview(false)}
-                            templateType="ad-copy"
+                    <div className="flex flex-col lg:flex-row min-h-[calc(100vh-140px)]">
+                        <TemplateForm
+                            template={{ title: "Ad Copy Generator" }}
+                            fields={fields}
+                            onGenerate={generateContent}
+                            isGenerating={isGenerating}
                         />
-                    )}
+                        {showPreview && (
+                            <GeneratedContentPreview
+                                content={generatedContent}
+                                onClose={() => setShowPreview(false)}
+                                templateType="ad-copy"
+                            />
+                        )}
+                    </div>
+                    <Toaster />
                 </>
             );
         

@@ -8,12 +8,7 @@ export default function Homepage() {
   const [currentSection, setCurrentSection] = useState('home');
 
   const features = [
-    {
-      icon: BarChart3,
-      title: "Analytics",
-      description: "View your content performance",
-      route: "/analytics"
-    },
+   
     {
       icon: PenTool,
       title: "Create",

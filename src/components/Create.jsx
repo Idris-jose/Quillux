@@ -1,11 +1,11 @@
-import  { useState } from 'react';
+ import  { useState } from 'react';
 import { ArrowLeft } from "lucide-react";
 import { Data } from './Datacards/CreateData.js';
 import { TemplatePages } from './TemplatePages.jsx';
 
 
 export default function Create() {
-    const Navs = ["Alllll", "Blog", "Social", "Email", "Adcopy"];
+    const Navs = ["All", "Blog", "Social", "Email", "Adcopy"];
     const [selectedNav, setSelectedNav] = useState("All");
     const [currentTemplate, setCurrentTemplate] = useState(null);
 
@@ -58,59 +58,72 @@ export default function Create() {
     // Default templates view
     return (
         <div className="p-6 bg-white min-h-screen">
-            <h1 className="text-3xl font-bold mb-4 text-black">
-                Templates
-            </h1>
-            <p className="text-gray-600 mb-6">Choose from our professionally crafted templates to jumpstart your content creation.</p>
+            <h1 className="text-3xl font-bold mb-2 text-black">Create Pieces that Captivate</h1>
+            <p className="text-gray-600 mb-6">Choose from our professionally crafted Genres to jumpstart your content creation.</p>
             
-            <nav className="gap-2 flex mb-6 flex-wrap" aria-label="Content type navigation">
+            <div className="gap-2 flex mb-6 flex-wrap">
                 {Navs.map((Nav) => (
                     <button
                         key={Nav}
-                        className={`px-4 py-2 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400 ${
+                        className={`px-4 py-2 rounded transition-colors ${
                             selectedNav === Nav
-                                ? "bg-orange-600 text-white font-semibold shadow"
+                                ? "bg-orange-600 text-white font-medium"
                                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                         }`}
-                        aria-pressed={selectedNav === Nav}
                         onClick={() => setSelectedNav(Nav)}
                     >
                         {Nav}
                     </button>
                 ))}
-            </nav>
+            </div>
             
-            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {allData[selectedNav].map((item, idx) => {
                     const IconComponent = item.icon;
+                    // Add dummy tags if not present
+                    const tags = item.tags || ["AI", "Template"];
                     return (
-                        <article
+                        <div
                             className="flex flex-col gap-3 bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-all duration-200 hover:border-orange-200"
                             key={idx}
-                            tabIndex={0}
-                            aria-label={item.Title}
                         >
                             <div className="flex items-center gap-2">
-                                <IconComponent className="text-orange-600" size={22} aria-hidden="true" />
+                                <IconComponent className="text-orange-600" size={20} />
                                 <span className="text-orange-600 text-sm font-medium">{item.subtitle}</span>
                             </div>
                             <h2 className="text-black font-semibold text-lg">{item.Title}</h2>
                             <p className="text-gray-600 text-sm flex-grow">{item.Subtext}</p>
+
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-1 mb-2">
+                                {tags.map((tag, tagIdx) => (
+                                    <span
+                                        key={tagIdx}
+                                        className="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
                             <button
-                                className="px-4 py-2 bg-orange-600 hover:bg-orange-700 rounded font-medium text-white transition-colors mt-auto focus:outline-none focus:ring-2 focus:ring-orange-400"
-                                tabIndex={0}
+                                className="px-4 py-2 bg-orange-600 hover:bg-orange-700 rounded font-medium text-white transition-colors mt-auto"
                                 onClick={() => handleTemplateClick(item.id)}
                             >
-                                {item.ButtonText}
+                                Create
                             </button>
-                        </article>
+                        </div>
                     );
                 })}
-            </section>
+            </div>
             
-            {allData[selectedNav].length === 0 && (
-                <div className="text-gray-500 text-center mt-10">No items available.</div>
-            )}
+            {/* Template count indicator */}
+            <div className="mt-8 text-center">
+                <p className="text-gray-500 text-sm">
+                    Showing {allData[selectedNav].length} template{allData[selectedNav].length !== 1 ? 's' : ''}
+                    {selectedNav !== "All" && ` in ${selectedNav}`}
+                </p>
+            </div>
         </div>
     );
 }

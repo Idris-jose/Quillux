@@ -7,6 +7,10 @@ export default function PromotionalEmailTemplate() {
     const [generatedContent, setGeneratedContent] = useState('');
     const [showPreview, setShowPreview] = useState(false);
 
+          const [error, setError] = useState(null);
+                         const [success, setSuccess] = useState(null);
+     
+
     const GEMINI_API_KEY = import.meta.env?.VITE_GEMINI_API_KEY;
 
     const generateContent = async (formData) => {

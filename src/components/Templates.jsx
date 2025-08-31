@@ -82,9 +82,14 @@ const ContentGenerator = ({ template, onBack }) => {
 
    
 
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(generatedContent);
-       
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(generatedContent);
+            toast.success('Content copied to clipboard!');
+        } catch (error) {
+            console.error('Failed to copy:', error);
+            toast.error('Failed to copy content');
+        }
     };
 
     const downloadAsFile = () => {

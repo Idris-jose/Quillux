@@ -16,7 +16,7 @@ const Login = () => {
         const { email, password } = formData;
         try {
             await signIn(email, password);
-            navigate('/home');
+            navigate('/create');
         } catch (err) {
             // Error is already handled in AuthContext
         }
