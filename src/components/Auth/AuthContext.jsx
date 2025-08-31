@@ -1,9 +1,14 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createContext, useContext, useState, useEffect } from 'react';
-import { auth, googleProvider } from '../firebase-config'; // You need to import these
-import { signInWithPopup, createUserWithEmailAndPassword,sendPasswordResetEmail, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
-import { collection, getDocs, addDoc, query, where, orderBy } from 'firebase/firestore';
-
+import { 
+  signInWithPopup, 
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail, 
+  signInWithEmailAndPassword, 
+  onAuthStateChanged, 
+  signOut 
+} from 'firebase/auth';
+import { auth, googleProvider } from '../firebase-config.js'; 
 import toast, { Toaster } from 'react-hot-toast';
 
 const AuthContext = createContext();
@@ -91,35 +96,35 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
- const sendPasswordReset = async (email) => {
-  try {
-    await sendPasswordResetEmail(auth, email, {
-      // Optional: Custom action code settings
-      url: 'http://localhost:5173/login', // Where user goes after reset
-      handleCodeInApp: false, // Let Firebase handle the reset page
-    });
-    return { success: true, message: 'Password reset email sent!' };
-  } catch (error) {
-    let errorMessage = 'Failed to send reset email';
-    
-    // Handle specific Firebase errors
-    switch (error.code) {
-      case 'auth/user-not-found':
-        errorMessage = 'No account found with this email address';
-        break;
-      case 'auth/invalid-email':
-        errorMessage = 'Invalid email address';
-        break;
-      case 'auth/too-many-requests':
-        errorMessage = 'Too many attempts. Please try again later';
-        break;
-      default:
-        errorMessage = error.message;
+  const sendPasswordReset = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email, {
+        // Optional: Custom action code settings
+        url: 'http://localhost:5173/login', // Where user goes after reset
+        handleCodeInApp: false, // Let Firebase handle the reset page
+      });
+      return { success: true, message: 'Password reset email sent!' };
+    } catch (error) {
+      let errorMessage = 'Failed to send reset email';
+      
+      // Handle specific Firebase errors
+      switch (error.code) {
+        case 'auth/user-not-found':
+          errorMessage = 'No account found with this email address';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid email address';
+          break;
+        case 'auth/too-many-requests':
+          errorMessage = 'Too many attempts. Please try again later';
+          break;
+        default:
+          errorMessage = error.message;
+      }
+      
+      return { success: false, message: errorMessage };
     }
-    
-    return { success: false, message: errorMessage };
-  }
-};
+  };
 
   const logout = async () => {
     try {

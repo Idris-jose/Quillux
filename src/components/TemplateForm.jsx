@@ -12,7 +12,7 @@ const TemplateForm = ({ template, fields, onGenerate, isGenerating }) => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto">
+       <div className="lg:w-1/2 p-6 bg-white border-r border-gray-200">
             <div className="bg-white rounded-lg border border-gray-200 p-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">{template.title}</h2>
                 <div className="space-y-6">

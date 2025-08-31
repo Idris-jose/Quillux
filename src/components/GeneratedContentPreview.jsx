@@ -30,7 +30,7 @@ const CopyButton = ({ text, className = "" }) => {
 
 export default function GeneratedContentPreview({ content, onClose, templateType }) {
     return (
-        <div className="p-6 bg-gray-50 min-h-screen">
+        <div className="lg:w-1/2 p-6 bg-gray-50">
             <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
                     <FileText className="text-gray-600" size={20} />
@@ -44,29 +44,29 @@ export default function GeneratedContentPreview({ content, onClose, templateType
                 )}
             </div>
 
-            <div className="bg-white rounded-lg border border-gray-200 h-[calc(100vh-200px)] overflow-hidden">
-                {content ? (
-                    <div className="h-full overflow-y-auto">
-                        <div className="p-6">
-                            <pre className="whitespace-pre-wrap text-sm text-gray-800 font-sans leading-relaxed">
-                                {content}
-                            </pre>
-                        </div>
-                    </div>
-                ) : (
-                    <div className="h-full flex items-center justify-center text-center p-6">
-                        <div>
-                            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <FileText className="text-gray-400" size={24} />
+           <div className="bg-white rounded-lg border border-gray-200 h-[calc(100vh-280px)] overflow-hidden">
+                        {content ? (
+                            <div className="h-full overflow-y-auto">
+                                <div className="p-6">
+                                    <pre className="whitespace-pre-wrap text-sm text-gray-800 font-sans leading-relaxed">
+                                        {content}
+                                    </pre>
+                                </div>
                             </div>
-                            <h3 className="text-lg font-medium text-gray-900 mb-2">No content generated yet</h3>
-                            <p className="text-gray-600 text-sm">
-                                Fill out the form and click "Generate Content" to see your AI-powered content here.
-                            </p>
-                        </div>
+                        ) : (
+                            <div className="h-full flex items-center justify-center text-center p-6">
+                                <div>
+                                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <FileText className="text-gray-400" size={24} />
+                                    </div>
+                                    <h3 className="text-lg font-medium text-gray-900 mb-2">No content generated yet</h3>
+                                    <p className="text-gray-600 text-sm">
+                                        Fill out the form and click "Generate Content" to see your AI-powered content here.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                )}
-            </div>
         </div>
     );
 }

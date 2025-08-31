@@ -154,7 +154,7 @@ Structure the outline in a clear, hierarchical format that's easy to follow when
 
     return (
         <> 
-        <div className="flex flex-col lg:flex-row min-h-[calc(100vh-140px)]">
+         <div className="flex flex-col lg:flex-row min-h-[calc(100vh-140px)]">
                  {/* Status messages */}
                        {error && (
                          <div
