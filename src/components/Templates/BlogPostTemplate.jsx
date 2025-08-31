@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TemplateForm from '../TemplateForm.jsx';
 import GeneratedContentPreview from '../GeneratedContentPreview.jsx';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function BlogPostTemplate() {
     const [isGenerating, setIsGenerating] = useState(false);
@@ -78,6 +79,7 @@ Make sure the content matches the specified tone and is appropriate for the targ
 
             setGeneratedContent(content);
             setShowPreview(true);
+            toast.success("Content generated successfully!");
 
         } catch (error) {
             console.error('Content generation error:', error);
